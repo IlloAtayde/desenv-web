@@ -1,0 +1,32 @@
+[
+    {
+        "protocol": "ICMP",
+        "type": "echo_req",
+        "source": "*",
+        "sport": "*",
+        "destination": "*",
+        "dport": "*",
+        "gateway": "*",
+        "description": "nenhuma"
+    },
+    {
+        "protocol": "ICMP",
+        "type": "echo_rep",
+        "source": "*",
+        "sport": "*",
+        "destination": "*",
+        "dport": "*",
+        "gateway": "*",
+        "description": "nenhuma"
+    },
+    {
+        "protocol": "TCP",
+        "type": "",
+        "source": "*",
+        "sport": "*",
+        "destination": "192.168.1.1",
+        "dport": "443 (HTTPS)",
+        "gateway": "*",
+        "description": "NAT redirecionamento_externo"
+    }
+]
