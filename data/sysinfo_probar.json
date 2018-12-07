@@ -1,0 +1,14 @@
+[
+    {
+        "label": "Utilização do CPU",
+        "value": "4"
+    },
+    {
+        "label": "Utilização da Memória",
+        "value": "9"
+    },
+    {
+        "label": "Utilização de Disco",
+        "value": "14"
+    }
+]

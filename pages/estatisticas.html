@@ -146,76 +146,8 @@
                         <!-- /.panel-heading -->
                         <div class="table-responsive">
                             <table class="table table-hover table-striped table-condensed">
-                                <tbody>
-                                        <!-- <tr>
-                                            <th>Tempo de atividade</th>
-                                            <td>02 Hours 22 Minutes 03 Seconds</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Data/hora atuais</th>
-                                            <td>
-                                                Thu Dec 6 16:15:23 UTC 2018
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Última alteração de configuração</th>
-                                            <td>
-                                                Mon Dec 3 15:16:15 UTC 2018
-                                            </td>
-                                        </tr> -->
-                                    <tr id="sysusage">
-                                        <th>utilização do CPU</th>
-                                        <td>
-                                            <div class="progress">
-                                                <div id="cpuPB" class="progress-bar progress-bar-striped" role="progressbar"
-                                                    aria-valuenow="4" aria-valuemin="0" aria-valuemax="100" style="width: 4%;">
-                                                </div>
-                                            </div>
-                                            <span id="cpumeter">4%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Utilização da Memoria</th>
-                                        <td>
-
-                                            <div class="progress">
-                                                <div id="memUsagePB" class="progress-bar progress-bar-striped" role="progressbar"
-                                                    aria-valuenow="9" aria-valuemin="0" aria-valuemax="100" style="width: 9%;">
-                                                </div>
-                                            </div>
-                                            <span id="memusagemeter">9</span><span>% of 978 MiB</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>
-                                            Utilização de Disco: <br>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            / </th>
-                                        <td>
-                                            <br>
-                                            <div class="progress">
-                                                <div id="diskspace0" class="progress-bar progress-bar-striped" role="progressbar"
-                                                    aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" style="width: 14%">
-                                                </div>
-                                            </div>
-                                            <span>14%do7.3GiB - ufs</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            /var/run </th>
-                                        <td>
-                                            <div class="progress">
-                                                <div id="diskspace1" class="progress-bar progress-bar-striped" role="progressbar"
-                                                    aria-valuenow="3" aria-valuemin="0" aria-valuemax="100" style="width: 3%">
-                                                </div>
-                                            </div>
-                                            <span>3%do3.4MiB - ufs Na RAM</span>
-                                        </td>
-                                    </tr>
-
+                                <tbody id="sysusage">
+                                    <!-- campos gerados pelas funções showSysInfo e showSysInfoProBar em main.js -->
                                 </tbody>
                             </table>
                         </div>

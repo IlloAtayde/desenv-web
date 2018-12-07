@@ -105,7 +105,33 @@ function showSysInfo(table) {
     </tr>
     `
 
-    sysTable.insertAdjacentHTML('beforebegin', viewTable)
+    sysTable.insertAdjacentHTML('afterbegin', viewTable)
+  }
+
+}
+
+const sysTableProBar = document.querySelector('#sysusage')
+
+fetch('../data/sysinfo_probar.json')
+  .then(res => res.json())
+  .then(json => showSysInfoProBar(json))
+
+function showSysInfoProBar(table) {
+  for (const tables of table) {
+    const viewTable = 
+    `<tr>
+        <th>${tables.label}</th>
+        <td>
+            <div class="progress">
+                <div id="cpuPB" class="progress-bar progress-bar-striped" role="progressbar"
+                aria-valuenow="4" aria-valuemin="0" aria-valuemax="100" style="width: ${tables.value}%;">
+                </div>
+            </div>
+            <span id="cpumeter">${tables.value}%</span>
+        </td>
+    </tr>`
+
+    sysTableProBar.insertAdjacentHTML('beforeend', viewTable)
   }
 
 }
