@@ -1,0 +1,16 @@
+[
+    {
+        "color": "panel-green",
+        "icon": "fa-gears",
+        "value": "3",
+        "name": "Regras",
+        "url": "regras.html"
+    },
+    {
+        "color": "panel-yellow",
+        "icon": "fa-bar-chart-o",
+        "value": "153",
+        "name": "Estatísticas",
+        "url": "estatisticas.html"
+    }
+]
