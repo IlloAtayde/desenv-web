@@ -36,7 +36,7 @@ $(function() {
         parseTime: false
       }); */
 
-    Morris.Area({
+    /* Morris.Area({
         element: 'morris-area-chart',
         data: [{
             period: '2010 Q1',
@@ -95,9 +95,9 @@ $(function() {
         pointSize: 2,
         hideHover: 'auto',
         resize: true
-    });
+    }); */
 
-    Morris.Donut({
+   /*  Morris.Donut({
         element: 'morris-donut-chart',
         data: [{
             label: "Download Sales",
@@ -110,10 +110,10 @@ $(function() {
             value: 20
         }],
         resize: true
-    });
+    }); */
 
-    Morris.Bar({
-        element: 'bar-example',
+    /* Morris.Bar({
+        element: 'morris-bar-chart',
         data: [
           { y: '2006', a: 100, b: 90 },
           { y: '2007', a: 75,  b: 65 },
@@ -126,7 +126,7 @@ $(function() {
         xkey: 'y',
         ykeys: ['a', 'b'],
         labels: ['Series A', 'Series B']
-      });
+      }); */
 
     /* Morris.Bar({
         element: 'morris-bar-chart',

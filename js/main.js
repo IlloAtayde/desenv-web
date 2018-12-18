@@ -1,10 +1,11 @@
 $.getJSON("../data/pacotes-filtrados.json", function (json) {
-  Morris.Line({
-    element: 'morris-line-chart',
+  Morris.Bar({
+    element: 'morris-bar-chart',
     data: json,
     xkey: 'hora',
-    ykeys: ['packets'],
-    labels: ['Pacotes'],
+    ykeys: ['packets_a','packets_b'],
+    barColors: ['#37de31','#ec1313'],
+    labels: ['Permitidos','Bloqueados'],
     parseTime: false
   });
 });
