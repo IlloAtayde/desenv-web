@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,22 +46,24 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Insira suas credenciais</h3>
                     </div>
+                    <?php if(isset($_SESSION['erro'])){ ?>
+                        <div class="alert alert-danger text-center">
+                            <?php 
+                                echo $_SESSION['erro'];
+                                unset($_SESSION['erro']);
+                            ?>
+                        </div>
+                    <?php } ?>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="../php/auth.php" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="Usuário" name="login" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Senha" name="password" type="password" value="">
                                 </div>
-                                <!-- <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div> -->
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                <button class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
                         </form>
                     </div>

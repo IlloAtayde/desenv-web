@@ -2,15 +2,15 @@
     {
         "color": "panel-green",
         "icon": "fa-gears",
-        "value": "3",
+        "value": "5",
         "name": "Regras",
-        "url": "regras.html"
+        "url": "regras.php"
     },
     {
         "color": "panel-yellow",
         "icon": "fa-bar-chart-o",
-        "value": "153",
+        "value": "233",
         "name": "Estatísticas",
-        "url": "estatisticas.html"
+        "url": "estatisticas.php"
     }
 ]

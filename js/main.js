@@ -1,24 +1,75 @@
+
 $.getJSON("../data/pacotes-filtrados.json", function (json) {
-  Morris.Bar({
-    element: 'morris-bar-chart',
-    data: json,
-    xkey: 'hora',
-    ykeys: ['packets_a','packets_b'],
-    barColors: ['#37de31','#ec1313'],
-    labels: ['Permitidos','Bloqueados'],
-    parseTime: false
-  });
+    Morris.Bar({
+        element: 'morris-bar-chart',
+        data: json,
+        xkey: 'hora',
+        ykeys: ['packets_a', 'packets_b'],
+        barColors: ['#37de31', '#ec1313'],
+        labels: ['Permitidos', 'Bloqueados'],
+        parseTime: false
+    });
 });
+
+
+function ambos() {
+    $('#morris-bar-chart').empty();
+    $.getJSON("../data/pacotes-filtrados.json", function (json) {
+        Morris.Bar({
+            element: 'morris-bar-chart',
+            data: json,
+            xkey: 'hora',
+            ykeys: ['packets_a', 'packets_b'],
+            barColors: ['#37de31', '#ec1313'],
+            labels: ['Permitidos', 'Bloqueados'],
+            parseTime: false
+        });
+    });
+}
+
+
+function bloqueado() {
+    $('#morris-bar-chart').empty();
+    $.getJSON("../data/pacotes-filtrados.json", function (json) {
+        Morris.Bar({
+            element: 'morris-bar-chart',
+            data: json,
+            xkey: 'hora',
+            ykeys: ['packets_b'],
+            barColors: ['#ec1313'],
+            labels: ['Bloqueados'],
+            parseTime: false
+        });
+    });
+
+}
+
+function permitido() {
+    $('#morris-bar-chart').empty();
+    $.getJSON("../data/pacotes-filtrados.json", function (json) {
+        Morris.Bar({
+            element: 'morris-bar-chart',
+            data: json,
+            xkey: 'hora',
+            ykeys: ['packets_a'],
+            barColors: ['#37de31'],
+            labels: ['Permitidos'],
+            parseTime: false
+        });
+    });
+}
+
+
 
 const topCard = document.querySelector('#cards')
 
 fetch('../data/dashboard.json')
-  .then(res => res.json())
-  .then(json => showCard(json))
+    .then(res => res.json())
+    .then(json => showCard(json))
 
 function showCard(card) {
-  for (const cards of card) {
-    const view = `<div class="col-lg-6 col-md-6">
+    for (const cards of card) {
+        const view = `<div class="col-lg-6 col-md-6">
         <div class="panel ${cards.color}">
             <div class="panel-heading">
                 <div class="row">
@@ -41,21 +92,24 @@ function showCard(card) {
         </div>
     </div>`
 
-    topCard.insertAdjacentHTML('beforeend', view)
-  }
+        topCard.insertAdjacentHTML('beforeend', view)
+    }
 
 }
+
+/* INÍCIO - Página reggras.php */
 
 const topTable = document.querySelector('#tabregras')
 
 fetch('../data/regras.json')
-  .then(res => res.json())
-  .then(json => showTable(json))
+    .then(res => res.json())
+    .then(json => showTable(json))
 
 function showTable(table) {
-  for (const tables of table) {
-    const viewTable = 
-    `<tr> 
+    i = 0;
+    for (const tables of table) {
+        const viewTable =
+            `<tr> 
        <td>
           <input type="checkbox">
       </td>
@@ -77,63 +131,77 @@ function showTable(table) {
       ${tables.description}</td>
       <td class="action-icons">
           <!-- disable -->
-          <a href="firewall_rules_edit.php?id=0" class="fa fa-pencil" title="Editar"></a>
-          <a href="firewall_rules_edit.php?dup=0" class="fa fa-clone" title="Copiar"></a>
-          <a href="?act=toggle&amp;if=wan&amp;id=0" class="fa fa-ban" title="Desabilitar"
+          <a href="firewall_rules_edit.php?id=${i}" class="fa fa-pencil" title="Editar"></a>
+          <a href="firewall_rules_edit.php?dup=${i}" class="fa fa-clone" title="Copiar"></a>
+          <a href="?act=toggle&amp;if=wan&amp;id=${i}" class="fa fa-ban" title="Desabilitar"
               usepost=""></a>
-          <a href="?act=del&amp;if=wan&amp;id=0" class="fa fa-trash" title="Excluir esta regra"
+          <a href="?act=del&amp;if=wan&amp;id=${i}" class="fa fa-trash" title="Excluir esta regra"
               usepost=""></a>
       </td>
     </tr>`
 
-    topTable.insertAdjacentHTML('beforeend', viewTable)
-  }
+        topTable.insertAdjacentHTML('beforeend', viewTable)
+        i++;
+    }
 
 }
+
+$('#selectAll:checkbox').change(function () {
+    if ($(this).is(':checked')) {
+        $('input[type=checkbox]').prop('checked', true);
+    } else {
+        $('input[type=checkbox]').prop('checked', false);
+    }
+});
+
+
+/* FIM - Página reggras.php */
+
 
 const sysTable = document.querySelector('#sysusage')
 
 fetch('../data/sysinfo.json')
-  .then(res => res.json())
-  .then(json => showSysInfo(json))
+    .then(res => res.json())
+    .then(json => showSysInfo(json))
 
 function showSysInfo(table) {
-  for (const tables of table) {
-    const viewTable = 
-    `<tr>
+    for (const tables of table) {
+        const viewTable =
+            `<tr>
         <th>${tables.label}</th>
         <td>${tables.value}</td>
     </tr>
     `
 
-    sysTable.insertAdjacentHTML('afterbegin', viewTable)
-  }
+        sysTable.insertAdjacentHTML('afterbegin', viewTable)
+    }
 
 }
 
 const sysTableProBar = document.querySelector('#sysusage')
 
-fetch('../data/sysinfo_probar.json')
-  .then(res => res.json())
-  .then(json => showSysInfoProBar(json))
+fetch('../php/sysinfo_probar.php')
+    .then(res => res.json())
+    .then(json => showSysInfoProBar(json))
 
 function showSysInfoProBar(table) {
-  for (const tables of table) {
-    const viewTable = 
-    `<tr>
+    var i = 0;
+    for (const tables of table) {
+        const viewTable =
+            `<tr>
         <th>${tables.label}</th>
         <td>
             <div class="progress">
-                <div id="cpuPB" class="progress-bar progress-bar-striped" role="progressbar"
+                <div id="load_meter${i}" class="progress-bar progress-bar-striped" role="progressbar"
                 aria-valuenow="4" aria-valuemin="0" aria-valuemax="100" style="width: ${tables.value}%;">
                 </div>
             </div>
-            <span id="cpumeter">${tables.value}%</span>
+            <span id="load_percent${i}">${tables.value}%</span>
         </td>
     </tr>`
-
-    sysTableProBar.insertAdjacentHTML('beforeend', viewTable)
-  }
+        i++;
+        sysTableProBar.insertAdjacentHTML('beforeend', viewTable)
+    }
 
 }
 

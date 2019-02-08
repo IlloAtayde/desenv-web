@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['auth']) || $_SESSION['auth'] === false)
+    header('Location: login.php');
+$page = $_GET['page'] ?? "dashboard";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +56,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">FireWall Web beta</a>
+                <a class="navbar-brand" href="index.php">FireWall Web beta</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -59,7 +67,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -72,12 +80,12 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.php?page=dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="estatisticas.html"><i class="fa fa-bar-chart-o fa-fw"></i> Estatísticas</a>
+                            <a href="index.php?page=estatisticas"><i class="fa fa-bar-chart-o fa-fw"></i> Estatísticas</a>
                         <li>
-                            <a href="regras.html"><i class="fa fa-table fa-fw"></i> Regras</a>
+                            <a href="index.php?page=regras"><i class="fa fa-table fa-fw"></i> Regras</a>
                         </li>
                     </ul>
                 </div>
@@ -86,53 +94,8 @@
         </nav>
 
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div id="cards" class="row">
-                <!-- Elementos gerados pela função showCard em main.js -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <!-- Linha do Gráfico -->
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Pacotes Filtrados
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Exibir
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Bloqueados</a>
-                                        </li>
-                                        <li><a href="#">Permitidos</a>
-                                        </li>
-                                        <li><a href="#">Ambos</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <!-- Corpo do Gráfico -->
-                            <div id="morris-bar-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-
-                        <!-- /.panel -->
-                    </div>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+            <!-- Conteúdo adicionado pelo php -->
+            <?php include($page.".php"); ?>
         </div>
         <!-- /#page-wrapper -->
 
@@ -169,6 +132,8 @@
     
     <!-- Main -->
     <script src="../js/main.js"></script>
+
+    
     
 </body>
 
