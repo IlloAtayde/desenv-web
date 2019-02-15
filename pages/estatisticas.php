@@ -1,7 +1,10 @@
 <?php
+    /* if(!isset($_SESSION['auth']) || $_SESSION['auth'] === false){
+        header('Location: login.php');
+    }
+    header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past */
 
-if(!isset($_SESSION['auth']) || $_SESSION['auth'] === false)
-    header('Location: login.php');
 ?>
 
 
@@ -68,26 +71,19 @@ if(!isset($_SESSION['auth']) || $_SESSION['auth'] === false)
             <!-- /.row -->
 
 <script>
-    
+    /* Função para atualizar os dados da carga e informações do sistema a cada 1000ms*/
     setInterval(() => {
         $.getJSON( "../php/sysinfo_probar.php", function( data ) {
             for (let i = 0; i < 3; i++) {
                 $('#load_meter'+i).css('width',data[i].value +'%');
                 $('#load_percent'+i).text(data[i].value +'%');                
             }
-            /* console.log(data[1].value);
-
-            $('#cpuPB0').css('width',data[0].value + '%');
-            $('#cpumeter0').text(data[0].value +'%');
-
-            $('#cpuPB1').css('width',data[1].value + '%');
-            $('#cpumeter1').text(data[1].value +'%');
-
-            $('#cpuPB2').css('width',data[2].value + '%');
-            $('#cpumeter2').text(data[2].value +'%');
- */
-
-        });        
+        }); 
+        $.getJSON( "../php/sysinfo.php", function( sysdata ) {
+            for (let i = 0; i < 3; i++) {
+                $('#sys_value'+i).text(sysdata[i].value);                
+            }
+        });       
     }, 1000);
 
 </script>

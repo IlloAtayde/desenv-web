@@ -1,0 +1,15 @@
+Chain INPUT (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    5   272 ACCEPT     tcp  --  eth0   *       10.0.2.2             10.0.2.15            tcp dpt:22
+ 3605  533K ACCEPT     tcp  --  *      *       10.0.2.2             10.0.2.15            tcp dpt:80
+22677 4320K ACCEPT     tcp  --  *      *       127.0.0.0/24         127.0.0.0/24        
+
+Chain FORWARD (policy ACCEPT 38 packets, 3192 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+   76  6384 DROP       icmp --  *      *       192.168.0.100        1.1.1.1              icmptype 8
+
+Chain OUTPUT (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    3   228 ACCEPT     tcp  --  *      eth0    10.0.2.15            10.0.2.2             tcp spt:22
+ 2471 1921K ACCEPT     tcp  --  *      *       10.0.2.15            10.0.2.2             tcp spt:80
+22677 4320K ACCEPT     tcp  --  *      *       127.0.0.0/24         127.0.0.0/24        

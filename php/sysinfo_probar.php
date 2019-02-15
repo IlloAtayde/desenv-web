@@ -1,4 +1,9 @@
 <?php
+    /* if(!isset($_SESSION['auth']) || $_SESSION['auth'] === false){
+        header('Location: login.php');
+    }
+    header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past */
 /* Comandos para executar em shell
 Carga da CPU #uptime | cut -d":" -f5 | cut -d"," -f1 -> mutiplicar por 100 para apresentar o percentual
 Memória do sistema #free | grep Mem | cut -d':' -f2 | tr -s ' ' | sed 's/.//' -> aplicar o explode e recuperar os dois primeiros valores em MB para fazer o cálculo de memória livre
@@ -11,7 +16,7 @@ Uso do disco
 
  */
 /* $cpu_load = (float)shell_exec("uptime | cut -d':' -f4 | cut -d',' -f1")*100; */
-$cpu_load = number_format(((float)shell_exec("uptime | cut -d':' -f5 | cut -d',' -f1")*100),2);
+$cpu_load = number_format(((float)shell_exec("uptime | cut -d',' -f3 | cut -d':' -f2 | sed 's/.//'")*100),2);
 /* var_dump($cpu_load); */
 
 list($mem_total, $mem_use) = explode(' ',shell_exec("free | grep Mem | cut -d':' -f2 | tr -s ' ' | sed 's/.//'"));
@@ -29,7 +34,7 @@ $disk_load = number_format((int)shell_exec("df -h | grep '/dev/' | tr -s ' ' | c
         "value": "66.65"
     },
     {
-        "label": "Utilização da Memória",
+        "label": "Utilização da Memória",       Formato esperado pela aplicação
         "value": "9"
     },
     {
@@ -37,6 +42,9 @@ $disk_load = number_format((int)shell_exec("df -h | grep '/dev/' | tr -s ' ' | c
         "value": "14"
     }
 ] */
+
+/* Primeira renderização das informações de carga do sistema */
+
 
 $pro_bar_status = array(
                         array(

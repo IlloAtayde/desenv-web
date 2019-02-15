@@ -1,0 +1,15 @@
+Chain INPUT (policy DROP)
+num target prot opt source destination 
+1 ACCEPT tcp -- 10.0.2.2 10.0.2.15 tcp dpt:22
+2 ACCEPT tcp -- 10.0.2.2 10.0.2.15 tcp dpt:80
+3 ACCEPT tcp -- 127.0.0.0/24 127.0.0.0/24 
+
+Chain FORWARD (policy ACCEPT)
+num target prot opt source destination 
+1 DROP icmp -- 192.168.0.100 1.1.1.1 icmptype 8
+
+Chain OUTPUT (policy DROP)
+num target prot opt source destination 
+1 ACCEPT tcp -- 10.0.2.15 10.0.2.2 tcp spt:22
+2 ACCEPT tcp -- 10.0.2.15 10.0.2.2 tcp spt:80
+3 ACCEPT tcp -- 127.0.0.0/24 127.0.0.0/24 

@@ -1,8 +1,11 @@
 <?php
-session_start();
-if(!isset($_SESSION['auth']) || $_SESSION['auth'] === false)
-    header('Location: login.php');
-$page = $_GET['page'] ?? "dashboard";
+    session_start();
+    if(!isset($_SESSION['auth']) || $_SESSION['auth'] === false){
+        header('Location: login.php');
+    }
+    $page = $_GET['page'] ?? "dashboard";
+    /* header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past */
 
 ?>
 
@@ -87,6 +90,9 @@ $page = $_GET['page'] ?? "dashboard";
                         <li>
                             <a href="index.php?page=regras"><i class="fa fa-table fa-fw"></i> Regras</a>
                         </li>
+                        <li>
+                            <a href="index.php?page=history_rules"><i class="fa fa-database fa-fw"></i> Histórico de regras</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -94,8 +100,15 @@ $page = $_GET['page'] ?? "dashboard";
         </nav>
 
         <div id="page-wrapper">
-            <!-- Conteúdo adicionado pelo php -->
-            <?php include($page.".php"); ?>
+            <!-- Conteúdo adicionado pelo php, chama a página especifica passada pelo GET-->
+            <?php 
+            
+                if ($page == 'formulario'){
+                    $page = '../php/formulario';
+                }
+                include($page.".php"); 
+
+            ?>
         </div>
         <!-- /#page-wrapper -->
 

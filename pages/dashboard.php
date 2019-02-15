@@ -1,4 +1,6 @@
 <?php
+    header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 
 if(!isset($_SESSION['auth']) || $_SESSION['auth'] === false)
     header('Location: login.php');
@@ -52,3 +54,23 @@ if(!isset($_SESSION['auth']) || $_SESSION['auth'] === false)
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+
+
+
+<script>
+    /* Função para atualizar os dados das politicas, chains e pacotes a cada 1000ms */
+    setInterval(() => {
+        $.getJSON( "../php/iptables.php", function( data ) {
+                for (let i = 0; i < 3; i++) {
+                    if (data[i].policy == "DROP") {                        
+                        $('#card_color'+i).removeClass("panel-green").addClass("panel-red");
+                    } else {
+                        $('#card_color'+i).removeClass("panel-red").addClass("panel-green");
+                    }
+                $('#packtes'+i).text(data[i].packets);
+                $('#chain_policy'+i).text(data[i].chain +' '+ data[i].policy);        
+            }
+        });      
+    }, 1000);
+
+</script>

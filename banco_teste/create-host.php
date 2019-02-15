@@ -8,12 +8,14 @@ function create($name, $address) {
 
   $sql = "INSERT INTO host (name, address) VALUES ('${name}', '${address}');";
   
-  // try {
-  //   $connection->exec($sql);
-  //   return $connection->lastInsertId();
-  // } catch(PDOExecption $e) { 
-  //   $connection->rollback(); 
-  //   print "Error!: " . $e->getMessage(); 
-  //   return null;
-  // } 
+  try {
+    $connection->beginTransaction();
+    $connection->exec($sql);
+    $connection->commit();
+    return $connection->lastInsertId();
+  } catch(PDOExecption $e) { 
+    $connection->rollback(); 
+    print "Error!: " . $e->getMessage(); 
+    return null;
+  } 
 }
